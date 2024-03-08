@@ -108,7 +108,7 @@ input::-webkit-inner-spin-button {
     width: 40%;
     padding: 15px;
     background: var(--background);
-    border-radius: 15px;
+    border-radius: 5px;
     z-index: 10;
 }
 
@@ -129,7 +129,7 @@ input::-webkit-inner-spin-button {
     background: none;
     color: var(--color);
     border: solid 4px var(--element-color);
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 0.3rem 4rem;
     font-size: inherit;
     font-weight: bold;

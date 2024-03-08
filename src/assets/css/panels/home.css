@@ -224,6 +224,7 @@
     border-radius: 15px;
     height: 3rem;
     margin: 0 1.5rem;
+    cursor: pointer;
 }
 
 .player-head {
@@ -258,6 +259,7 @@
     border-radius: 15px;
     height: 3.2rem;
     padding-right: 1.9rem;
+    cursor: pointer;
 }
 
 .play-btn {
