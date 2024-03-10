@@ -114,6 +114,13 @@
     margin: 0 0 1rem 0;
     border-radius: 10px;
     background: var(--background-transparent);
+    transition: all 0.5s;
+    scale: 0.97;
+}
+
+.news-block:hover {
+    transition: all 0.5s;
+    scale: 1;
 }
 
 .news-header {
@@ -225,6 +232,12 @@
     height: 3rem;
     margin: 0 1.5rem;
     cursor: pointer;
+    transition: all 0.5s;
+}
+
+.player-options:hover {
+    transition: all 0.5s;
+    scale: 1.1;
 }
 
 .player-head {
@@ -322,6 +335,12 @@
     font-size: 3rem;
     color: var(--element-color);
     margin: 0 1.5rem;
+    transition: all 0.5s;
+}
+
+.settings-btn:hover {
+    transition: all 0.5s;
+    transform: rotate(70deg);
 }
 
 .instance-popup {

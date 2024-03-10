@@ -26,6 +26,15 @@
     align-items: center;
 }
 
+.nav-box div {
+    transition: all 0.5s;
+}
+
+.nav-box #account:hover, #java:hover, #resolution:hover, #launcher:hover {
+    transition: all 0.3s;
+    background-color: #00b877;
+}
+
 .nav-box #save {
     border: solid 4px var(--background-element);
     margin: 3rem;
