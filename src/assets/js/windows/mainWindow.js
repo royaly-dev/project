@@ -32,12 +32,14 @@ function createWindow() {
         icon: `./src/assets/images/icon.${os.platform() === "win32" ? "ico" : "png"}`,
         frame: os.platform() !== 'win32',
         show: false,
+        devTools: !app.isPackaged,
         webPreferences: {
             contextIsolation: false,
             nodeIntegration: true
         },
     });
     Menu.setApplicationMenu(null);
+    mainWindow.removeMenu()
     mainWindow.setMenuBarVisibility(false);
     mainWindow.loadFile(path.join(`${app.getAppPath()}/src/launcher.html`));
     mainWindow.once('ready-to-show', () => {

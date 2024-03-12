@@ -30,12 +30,14 @@ function createWindow() {
         icon: `./src/assets/images/icon.${os.platform() === "win32" ? "ico" : "png"}`,
         frame: false,
         show: false,
+        devTools: !app.isPackaged,
         webPreferences: {
             contextIsolation: false,
             nodeIntegration: true
         },
     });
     Menu.setApplicationMenu(null);
+    updateWindow.removeMenu()
     updateWindow.setMenuBarVisibility(false);
     updateWindow.loadFile(path.join(`${app.getAppPath()}/src/index.html`));
     updateWindow.once('ready-to-show', () => {

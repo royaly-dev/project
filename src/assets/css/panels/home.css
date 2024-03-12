@@ -24,6 +24,12 @@
     margin-top: 3rem;
     padding: 1rem;
     text-align: center;
+    transition: all 0.5s;
+}
+
+.status-server:hover {
+    transition: all 0.5s;
+    scale: 1.06;
 }
 
 .server-status-icon {
@@ -207,6 +213,14 @@
     height: 55%;
     width: 55%;
     filter: var(--svg-color);
+    transition: all 0.5s;
+}
+
+.social-block:hover {
+    #iconanim {
+        transition: all 0.5s;
+        scale: 1.1;
+    }
 }
 
 /*******************************************************************************
