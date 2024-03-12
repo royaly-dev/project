@@ -16,6 +16,7 @@ body {
 img {
     -webkit-user-drag: none;
     user-select: none;
+    border-radius: 5px;
 }
 
 * {
