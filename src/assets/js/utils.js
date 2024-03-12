@@ -82,6 +82,8 @@ async function headplayer(skinBase64) {
     document.querySelector(".player-head").style.backgroundImage = `url(${skin})`;
 }
 
+let inter = null
+
 async function setStatus(opt) {
     let nameServerElement = document.querySelector('.server-status-name')
     let statusServerElement = document.querySelector('.server-status-text')
@@ -95,7 +97,11 @@ async function setStatus(opt) {
         return
     }
 
-    setInterval(async () => {
+    clearInterval(inter)
+
+    console.log('interval clered')
+
+    inter = setInterval(async () => {
         console.log('test')
         let { ip, port, nameServer } = opt
         nameServerElement.innerHTML = nameServer
@@ -116,6 +122,8 @@ async function setStatus(opt) {
             playersOnline.innerHTML = '0'
         }
     }, 15000);
+
+    console.log('interval set')
 
     let { ip, port, nameServer } = opt
     nameServerElement.innerHTML = nameServer
