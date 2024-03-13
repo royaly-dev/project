@@ -7,7 +7,7 @@ const { app, BrowserWindow, Menu } = require("electron");
 const path = require("path");
 const os = require("os");
 const pkg = require("../../../../package.json");
-let dev = process.env.DEV_TOOL === 'open';
+let dev = process.env.DEV_TOOL === null;
 let mainWindow = undefined;
 
 function getWindow() {
@@ -32,7 +32,7 @@ function createWindow() {
         icon: `./src/assets/images/icon.${os.platform() === "win32" ? "ico" : "png"}`,
         frame: os.platform() !== 'win32',
         show: false,
-        devTools: !app.isPackaged,
+        devTool: false,
         webPreferences: {
             contextIsolation: false,
             nodeIntegration: true

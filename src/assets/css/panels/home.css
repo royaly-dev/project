@@ -314,6 +314,7 @@
     border-radius: 15px;
     padding: 0 0.5rem;
     cursor: pointer;
+    transition: all 0.5s;
 }
 
 .instance-select:before {
