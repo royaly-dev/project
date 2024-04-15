@@ -7,6 +7,8 @@ const { app, ipcMain, nativeTheme } = require('electron');
 const { Microsoft } = require('minecraft-java-core');
 const { autoUpdater } = require('electron-updater')
 
+const {initRPC, setiding, setplaying} = require('./assets/js/rpc/rpc.js')
+
 const path = require('path');
 const fs = require('fs');
 
@@ -30,7 +32,10 @@ else app.whenReady().then(() => {
     UpdateWindow.createWindow()
 });
 
-ipcMain.on('main-window-open', () => MainWindow.createWindow())
+ipcMain.on('main-window-open', async () => {
+    MainWindow.createWindow()
+    initRPC()
+})
 ipcMain.on('main-window-dev-tools', () => MainWindow.getWindow().webContents.openDevTools({ mode: 'detach' }) /*console.log('dev-tools-disable')*/)
 ipcMain.on('main-window-dev-tools-close', () => MainWindow.getWindow().webContents.closeDevTools())
 ipcMain.on('main-window-close', () => MainWindow.destroyWindow())
@@ -57,8 +62,14 @@ ipcMain.on('main-window-maximize', () => {
     }
 })
 
-ipcMain.on('main-window-hide', () => MainWindow.getWindow().hide())
-ipcMain.on('main-window-show', () => MainWindow.getWindow().show())
+ipcMain.on('main-window-hide', () => {
+    MainWindow.getWindow().hide()
+    setplaying()
+})
+ipcMain.on('main-window-show', () => {
+    MainWindow.getWindow().show()
+    setiding()
+})
 
 ipcMain.handle('Microsoft-window', async (_, client_id) => {
     return await new Microsoft(client_id).getAuth();
