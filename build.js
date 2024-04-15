@@ -78,6 +78,7 @@ class Index {
                 }],
                 win: {
                     icon: "./app/assets/images/icon.ico",
+                    publisherName: "royaly",
                     target: [{
                         target: "nsis",
                         arch: "x64"
