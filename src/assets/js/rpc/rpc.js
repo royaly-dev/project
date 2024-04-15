@@ -4,13 +4,15 @@ const id = "1229442499462959154"
 
 const rpc = new DiscordRPC.Client({ transport: 'ipc' })
 
+let start_playing = Date.now()
+
 async function initRPC() {
     DiscordRPC.register(id)
     if (!rpc) return;
     rpc.setActivity({
         details: "In the launcher",
         state: "Playing Lyra",
-        startTimestamp: Date.now(),
+        startTimestamp: start_playing,
         largeImageKey: "icon",
         largeImageText: "lyra",
         instance: false,
@@ -28,7 +30,7 @@ async function setiding() {
     rpc.setActivity({
         details: "In the launcher",
         state: "Playing Lyra",
-        startTimestamp: Date.now(),
+        startTimestamp: start_playing,
         largeImageKey: "icon",
         largeImageText: "lyra",
         instance: false,
@@ -46,7 +48,7 @@ async function setplaying(params) {
     rpc.setActivity({
         details: "In Game",
         state: "Playing Lyra",
-        startTimestamp: Date.now(),
+        startTimestamp: start_playing,
         largeImageKey: "icon",
         largeImageText: "lyra",
         instance: false,
