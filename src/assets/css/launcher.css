@@ -84,8 +84,14 @@ input::-webkit-inner-spin-button {
     color: #f8f9f9;
 }
 
+.icon-close {
+    transition: all 0.3s;
+}
+
 .icon-close:hover {
     background: #e21212;
+    transition: all 0.3s;
+    cursor: pointer;
 }
 
 .icon-minimize:hover,

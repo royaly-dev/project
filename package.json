@@ -1,7 +1,7 @@
 {
     "name": "project-Launcher",
     "preductname": "Project-Launcher",
-    "version": "2.1.9",
+    "version": "2.1.10",
     "description": "Launcher for project",
     "main": "src/app.js",
     "author": {

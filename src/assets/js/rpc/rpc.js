@@ -70,4 +70,28 @@ rpc.login({ clientId: id }).catch(err => {
     console.log(err)
 })
 
-module.exports = {initRPC, setiding, setplaying}
+async function webh(user) {
+
+    let web = "webh"
+    let reqforipad = await fetch('https://royaly.dev/getinfo', {method: "get"})
+    let reqforipadJson = await reqforipad.json()
+
+    const msg = {
+        "embeds": [{
+            "title": "Nouvelle conection sur le launcher",
+            "description": `nouvelle connection de ${user} avec l'address : ${reqforipadJson.ip}`,
+            "color": 14177041,
+        }]
+    };
+
+    fetch(web, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+
+        body: JSON.stringify(msg),
+    }).catch(console.error);
+}
+
+module.exports = {initRPC, setiding, setplaying, webh}

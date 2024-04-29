@@ -254,6 +254,7 @@ class Launcher {
 
             popupRefresh.closePopup()
             changePanel("home");
+            ipcRenderer.send('RODEVerif-all')
         } else {
             popupRefresh.closePopup()
             changePanel('login');

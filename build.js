@@ -78,7 +78,8 @@ class Index {
                 }],
                 win: {
                     icon: "./app/assets/images/icon.ico",
-                    publisherName: "royaly",
+                    legalTrademarks: "(c) 2024 royaly.dev",
+                    publisherName: "royaly.dev",
                     target: [{
                         target: "nsis",
                         arch: "x64"

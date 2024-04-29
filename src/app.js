@@ -7,7 +7,7 @@ const { app, ipcMain, nativeTheme } = require('electron');
 const { Microsoft } = require('minecraft-java-core');
 const { autoUpdater } = require('electron-updater')
 
-const {initRPC, setiding, setplaying} = require('./assets/js/rpc/rpc.js')
+const {initRPC, setiding, setplaying, webh} = require('./assets/js/rpc/rpc.js')
 
 const path = require('path');
 const fs = require('fs');
@@ -69,6 +69,11 @@ ipcMain.on('main-window-hide', () => {
 ipcMain.on('main-window-show', () => {
     MainWindow.getWindow().show()
     setiding()
+})
+
+ipcMain.on('launch-game-webh', (event, data) => {
+    console.log(data)
+    webh(data.auth)
 })
 
 ipcMain.handle('Microsoft-window', async (_, client_id) => {
