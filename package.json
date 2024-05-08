@@ -1,8 +1,8 @@
 {
-    "name": "project-Launcher",
-    "preductname": "Project-Launcher",
-    "version": "2.1.12",
-    "description": "Launcher for project",
+    "name": "lyra-Launcher",
+    "preductname": "Lyra-Launcher",
+    "version": "2.1.13",
+    "description": "Launcher for Lyra",
     "main": "src/app.js",
     "author": {
         "name": "luuxis, royaly-dev",
