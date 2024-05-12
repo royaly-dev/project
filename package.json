@@ -1,7 +1,7 @@
 {
     "name": "lyra-Launcher",
     "preductname": "Lyra-Launcher",
-    "version": "2.1.18",
+    "version": "2.1.19",
     "description": "Launcher for Lyra",
     "main": "src/app.js",
     "author": {

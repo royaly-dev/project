@@ -79,6 +79,7 @@ class Index {
                 win: {
                     icon: "./app/assets/images/icon.ico",
                     legalTrademarks: "(c) 2024 royaly.dev",
+                    verifyUpdateCodeSignature: false,
                     target: [{
                         target: "nsis",
                         arch: "x64"
