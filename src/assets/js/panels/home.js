@@ -209,7 +209,6 @@ class Home {
         let infoStartingBOX = document.querySelector('.info-starting-game')
         let infoStarting = document.querySelector(".info-starting-game-text")
         let progressBar = document.querySelector('.progress-bar')
-        
         let opt = {
             url: options.url,
             authenticator: authenticator,
