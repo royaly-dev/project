@@ -8,7 +8,7 @@ import Home from './panels/home.js';
 import Settings from './panels/settings.js';
 
 // import modules
-import { logger, config, changePanel, database, popup, setBackground, accountSelect, addAccount, pkg, setStatus } from './utils.js';
+import { logger, config, changePanel, database, popup, setBackground, accountSelect, addAccount, pkg, setStatus, headplayer } from './utils.js';
 const { AZauth, Microsoft, Mojang } = require('minecraft-java-core');
 
 // libs
@@ -139,6 +139,7 @@ class Launcher {
                     await this.db.deleteData('accounts', account_ID)
                     continue
                 }
+                console.log('test')
                 if (account.meta.type === 'Xbox') {
                     console.log(`Account Type: ${account.meta.type} | Username: ${account.name}`);
                     popupRefresh.openPopup({
@@ -149,7 +150,6 @@ class Launcher {
                     });
 
                     let refresh_accounts = await new Microsoft(this.config.client_id).refresh(account);
-
                     if (refresh_accounts.error) {
                         await this.db.deleteData('accounts', account_ID)
                         if (account_ID == account_selected) {
@@ -163,7 +163,7 @@ class Launcher {
                     refresh_accounts.ID = account_ID
                     await this.db.updateData('accounts', refresh_accounts, account_ID)
                     await addAccount(refresh_accounts)
-                    if (account_ID == account_selected) accountSelect(refresh_accounts)
+                    if (account_ID == account_selected) accountSelect(refresh_accounts);
                 } else if (account.meta.type == 'AZauth') {
                     console.log(`Account Type: ${account.meta.type} | Username: ${account.name}`);
                     popupRefresh.openPopup({
@@ -173,7 +173,6 @@ class Launcher {
                         background: false
                     });
                     let refresh_accounts = await new AZauth(this.config.online).verify(account);
-
                     if (refresh_accounts.error) {
                         this.db.deleteData('accounts', account_ID)
                         if (account_ID == account_selected) {
@@ -181,13 +180,15 @@ class Launcher {
                             this.db.updateData('configClient', configClient)
                         }
                         console.error(`[Account] ${account.name}: ${refresh_accounts.message}`);
+                        await headplayer(account.name)
                         continue;
                     }
 
                     refresh_accounts.ID = account_ID
                     this.db.updateData('accounts', refresh_accounts, account_ID)
                     await addAccount(refresh_accounts)
-                    if (account_ID == account_selected) accountSelect(refresh_accounts)
+                    if (account_ID == account_selected) accountSelect(refresh_accounts);
+                    await headplayer(account.name)
                 } else if (account.meta.type == 'Mojang') {
                     console.log(`Account Type: ${account.meta.type} | Username: ${account.name}`);
                     popupRefresh.openPopup({
@@ -203,6 +204,7 @@ class Launcher {
                         await addAccount(refresh_accounts)
                         this.db.updateData('accounts', refresh_accounts, account_ID)
                         if (account_ID == account_selected) accountSelect(refresh_accounts)
+                        await headplayer(account.name)
                         continue;
                     }
 
@@ -221,7 +223,7 @@ class Launcher {
                     refresh_accounts.ID = account_ID
                     this.db.updateData('accounts', refresh_accounts, account_ID)
                     await addAccount(refresh_accounts)
-                    if (account_ID == account_selected) accountSelect(refresh_accounts)
+                    if (account_ID == account_selected) accountSelect(refresh_accounts);
                 } else {
                     console.error(`[Account] ${account.name}: Account Type Not Found`);
                     this.db.deleteData('accounts', account_ID)

@@ -51,7 +51,7 @@ async function appdata() {
 
 async function addAccount(data) {
     let skin = false
-    if (data?.profile?.skins[0]?.base64) skin = await new skin2D().creatHeadTexture(data.profile.skins[0].base64);
+    if (data?.name) skin = `https://mc-heads.net/avatar/${data.name}/150.png`;
     let div = document.createElement("div");
     div.classList.add("account");
     div.id = data.ID;
@@ -74,12 +74,12 @@ async function accountSelect(data) {
 
     if (activeAccount) activeAccount.classList.toggle('account-select');
     account.classList.add('account-select');
-    if (data?.profile?.skins[0]?.base64) headplayer(data.profile.skins[0].base64);
+    if (data?.profile?.skins[0]?.base64) headplayer(data.name);
 }
 
-async function headplayer(skinBase64) {
-    let skin = await new skin2D().creatHeadTexture(skinBase64);
-    document.querySelector(".player-head").style.backgroundImage = `url(${skin})`;
+async function headplayer(name) {
+    // https://mc-heads.net/avatar/royaly/150.png
+    document.querySelector(".player-head").style.backgroundImage = `url(https://mc-heads.net/avatar/${name}/150.png)`;
 }
 
 let inter = null
@@ -157,5 +157,6 @@ export {
     accountSelect as accountSelect,
     slider as Slider,
     pkg as pkg,
-    setStatus as setStatus
+    setStatus as setStatus,
+    headplayer as headplayer
 }
