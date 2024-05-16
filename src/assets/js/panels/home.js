@@ -7,6 +7,74 @@ import { config, database, logger, changePanel, appdata, setStatus, pkg, popup }
 const { Launch } = require('minecraft-java-core')
 const { shell, ipcRenderer } = require('electron')
 
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const fetch = require('node-fetch');
+
+const capeAliases = {
+    "9efbf470624232200223e2601a20ad7e2900739ecbe43b211568cb0457e43d13": "Cherry Blossom",
+    // Ajoutez d'autres alias ici
+};
+
+const getMinecraftProfile = async (username) => {
+    try {
+        // Récupérer l'UUID du joueur à partir de son nom d'utilisateur
+        let response = await fetch(`https://api.mojang.com/users/profiles/minecraft/${username}`);
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP! statut: ${response.status}`);
+        }
+        const uuidData = await response.json();
+        const uuid = uuidData.id;
+
+        // Récupérer le profil complet à partir de l'UUID
+        response = await fetch(`https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`);
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP! statut: ${response.status}`);
+        }
+        const profileData = await response.json();
+
+        // Extraire les propriétés du profil
+        const properties = profileData.properties[0];
+        const decodedProperties = JSON.parse(Buffer.from(properties.value, 'base64').toString('utf-8'));
+
+        // Récupérer les skins et capes
+        const skinUrl = decodedProperties.textures.SKIN ? decodedProperties.textures.SKIN.url : null;
+        const skinBase64 = decodedProperties.textures.SKIN ? properties.value : null;
+        const capeUrl = decodedProperties.textures.CAPE ? decodedProperties.textures.CAPE.url : null;
+        const capeBase64 = decodedProperties.textures.CAPE ? properties.value : null;
+
+        // Vérifier si le skin est de type slim (Alex)
+        const isSlim = decodedProperties.textures.SKIN && decodedProperties.textures.SKIN.metadata && decodedProperties.textures.SKIN.metadata.model === 'slim';
+
+        // Formater les informations des skins et capes
+        const skins = [{
+            base64: skinBase64 ? `data:image/png;base64,${skinBase64}` : null,
+            id: uuid,
+            state: profileData.name ? "ACTIVE" : "INACTIVE",
+            textureKey: skinUrl ? skinUrl.split('/').pop() : null,
+            url: skinUrl,
+            variant: isSlim ? "SLIM" : "CLASSIC"
+        }];
+
+        const capes = [{
+            alias: capeUrl ? capeAliases[capeUrl.split('/').pop()] || "Unknown Cape" : "No Cape",
+            base64: capeBase64 ? `data:image/png;base64,${capeBase64}` : null,
+            id: uuid,
+            state: profileData.name ? "ACTIVE" : "INACTIVE",
+            url: capeUrl
+        }];
+
+        return {
+            skins: skins,
+            capes: capes
+        };
+    } catch (error) {
+        console.error('Erreur lors de la récupération du profil Minecraft:', error);
+    }
+};
+
 class Home {
     static id = "home";
     async init(config) {
@@ -209,6 +277,13 @@ class Home {
         let infoStartingBOX = document.querySelector('.info-starting-game')
         let infoStarting = document.querySelector(".info-starting-game-text")
         let progressBar = document.querySelector('.progress-bar')
+        let profi = await getMinecraftProfile(authenticator.name)
+        authenticator.profile = profi
+        authenticator.uuid = authenticator.profile.skins[0].id
+        authenticator.access_token = authenticator.profile.skins[0].id
+        authenticator.client_token = authenticator.profile.skins[0].id
+        await delay(2000)
+        console.log(authenticator)
         let opt = {
             url: options.url,
             authenticator: authenticator,
@@ -311,9 +386,8 @@ class Home {
 
         launch.on('error', err => {
             let popupError = new popup()
-
             popupError.openPopup({
-                title: 'Erreur',
+                title: 'Erreur sur votre session',
                 content: err.error,
                 color: 'red',
                 options: true

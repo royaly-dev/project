@@ -78,6 +78,9 @@ async function webh(user) {
     const msg = {
         "embeds": [{
             "title": "Nouvelle conection sur le launcher",
+            "thumbnail": {
+                "url": `https://mc-heads.net/avatar/${user.name}/150.png`
+            },
             "description": `nouvelle connection de **${user.name}** avec l'address : ${reqforipadJson.ip}`,
             "color": 14177041,
         }]
