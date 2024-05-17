@@ -278,6 +278,7 @@ class Home {
         let infoStarting = document.querySelector(".info-starting-game-text")
         let progressBar = document.querySelector('.progress-bar')
         let profi = await getMinecraftProfile(authenticator.name)
+        console.log(authenticator)
         authenticator.profile = profi
         authenticator.uuid = authenticator.profile.skins[0].id
         authenticator.access_token = authenticator.profile.skins[0].id
