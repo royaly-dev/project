@@ -277,6 +277,9 @@ class Home {
         let infoStartingBOX = document.querySelector('.info-starting-game')
         let infoStarting = document.querySelector(".info-starting-game-text")
         let progressBar = document.querySelector('.progress-bar')
+        playInstanceBTN.style.display = "none"
+        infoStartingBOX.style.display = "block"
+        progressBar.style.display = "";
         let profi = await getMinecraftProfile(authenticator.name)
         console.log(authenticator)
         authenticator.profile = profi
@@ -320,10 +323,6 @@ class Home {
         }
 
         launch.Launch(opt);
-
-        playInstanceBTN.style.display = "none"
-        infoStartingBOX.style.display = "block"
-        progressBar.style.display = "";
         ipcRenderer.send('main-window-progress-load')
 
         launch.on('extract', extract => {

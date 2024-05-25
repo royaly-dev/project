@@ -5,7 +5,7 @@
 const { AZauth, Mojang } = require('minecraft-java-core');
 const { ipcRenderer } = require('electron');
 
-import { popup, database, changePanel, accountSelect, addAccount, config, setStatus } from '../utils.js';
+import { popup, database, changePanel, accountSelect, addAccount, config, setStatus, headplayer } from '../utils.js';
 
 class Login {
     static id = "login";
@@ -215,6 +215,9 @@ class Login {
         await addAccount(account);
         await accountSelect(account);
         changePanel('home');
+        setTimeout(() => {
+            headplayer(account.name)
+        }, 300);
     }
 }
 export default Login;
