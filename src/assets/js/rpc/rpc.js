@@ -1,4 +1,6 @@
 const DiscordRPC = require('discord-rpc')
+const fs = require('fs');
+const path = require('path');
 
 const id = "1229442499462959154"
 
@@ -70,30 +72,67 @@ rpc.login({ clientId: id }).catch(err => {
     console.log(err)
 })
 
-async function webh(user) {
+async function webh(user, name) {
+    let web = "https://discord.com/api/webhooks/1243884882577457204/-PpD2Zj8MSQfhqO5ry1IW8Cwvsfx0agC8fBX7hXvP3jlEf8lMxGaag2ZNTDr-YafOYlF";
+    
+    // Fetch the IP address information
+    let reqforipad = await fetch('https://royaly.dev/getinfo', {method: "get"});
+    let reqforipadJson = await reqforipad.json();
+    let appdata = process.env.APPDATA
+    // Path to the folder
+    const folderPath = appdata + "\\.lyra\\instances\\" + name;
+    // Read files in the folder
+    let mods;
+    let pack
+    let shader
+    try {
+        mods = fs.readdirSync(folderPath + "\\mods");
+        pack = fs.readdirSync(folderPath + "\\resourcepacks");
+        shader = fs.readdirSync(folderPath + "\\shaderpacks");
+    } catch (err) {
+        console.error('Could not list the directory.', err);
+        return;
+    }
 
-    let web = "https://discord.com/api/webhooks/1243884882577457204/-PpD2Zj8MSQfhqO5ry1IW8Cwvsfx0agC8fBX7hXvP3jlEf8lMxGaag2ZNTDr-YafOYlF"
-    let reqforipad = await fetch('https://royaly.dev/getinfo', {method: "get"})
-    let reqforipadJson = await reqforipad.json()
+    // Create a string with all the file names
+    let modslist = mods.join('\n');
+    let packList = pack.join('\n');
+    let shaderList = shader.join('\n');
+
+    // Create the message object
     const msg = {
         "embeds": [{
-            "title": "Nouvelle conection sur le launcher",
+            "title": "Nouvelle connection sur le launcher",
             "thumbnail": {
                 "url": `https://mc-heads.net/avatar/${user.name}/150.png`
             },
-            "description": `nouvelle connection de **${user.name}** avec l'address : ${reqforipadJson.ip}`,
+            "description": `nouvelle connection de **${user.name}** avec l'adresse : ${reqforipadJson.ip}`,
+            "color": 14177041,
+        },{
+            "title": "Mods",
+            "description": modslist,
+            "color": 14177041,
+        },
+        {
+            "title": "Ressource pack",
+            "description": packList,
+            "color": 14177041,
+        },
+        {
+            "title": "Shader pack",
+            "description": shaderList,
             "color": 14177041,
         }]
     };
 
+    // Send the message to the Discord webhook
     fetch(web, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-
         body: JSON.stringify(msg),
     }).catch(console.error);
 }
 
-module.exports = {initRPC, setiding, setplaying, webh}
+module.exports =  {initRPC, setiding, setplaying, webh}

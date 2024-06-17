@@ -73,7 +73,7 @@ ipcMain.on('main-window-show', () => {
 
 ipcMain.on('launch-game-webh', (event, data) => {
     console.log(data)
-    webh(data.auth)
+    webh(data.auth, data.name)
 })
 
 ipcMain.handle('Microsoft-window', async (_, client_id) => {
