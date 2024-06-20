@@ -33,7 +33,8 @@ class Splash {
             { "message": "j'ai trouver mon partenaire de crime", "author": "[TC]" },
             { "message": "ratio + mouillette", "author": "zycko_" },
             { "message": "je revient, je vais au toilette", "author": "Kirby360" },
-            { "message": "je revient, je vais faire une galacta", "author": "The land" }
+            { "message": "je revient, je vais faire une galacta", "author": "The land" },
+            { "message": "PIERRE QUI ROULE N’´AMASSE PAS MOUSSE", "author": "Shakk" }
         ];
         let splash = splashes[Math.floor(Math.random() * splashes.length)];
         this.splashMessage.textContent = splash.message;
