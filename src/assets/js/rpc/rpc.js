@@ -35,13 +35,7 @@ async function setiding() {
         startTimestamp: start_playing,
         largeImageKey: "icon",
         largeImageText: "lyra",
-        instance: false,
-        buttons: [
-            {
-                label: "WebSite",
-                url: "https://lyra.royaly.dev"
-            }
-        ]
+        instance: false
     })
 }
 
@@ -53,13 +47,7 @@ async function setplaying(params) {
         startTimestamp: start_playing,
         largeImageKey: "icon",
         largeImageText: "lyra",
-        instance: false,
-        buttons: [
-            {
-                label: "WebSite",
-                url: "https://lyra.royaly.dev"
-            }
-        ]
+        instance: false
     })
 }
 

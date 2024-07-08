@@ -1,7 +1,7 @@
 {
     "name": "lyra-Launcher",
     "preductname": "Lyra-Launcher",
-    "version": "2.2.1",
+    "version": "2.2.2",
     "description": "Launcher for Lyra",
     "main": "src/app.js",
     "author": {
@@ -9,7 +9,7 @@
         "email": "contact.royaly.dev@gmail.com",
         "url": "https://royaly.dev"
     },
-    "url": "https://royaly.ares-studio.net",
+    "url": "https://launcher.royaly.dev",
     "scripts": {
         "start": "cross-env-shell NODE_ENV=dev electron .",
         "dev": "cross-env-shell DEV_TOOL=open nodemon --exec npm start",
