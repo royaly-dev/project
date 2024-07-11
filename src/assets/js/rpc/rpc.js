@@ -17,13 +17,7 @@ async function initRPC() {
         startTimestamp: start_playing,
         largeImageKey: "icon",
         largeImageText: "lyra",
-        instance: false,
-        buttons: [
-            {
-                label: "WebSite",
-                url: "https://lyra.royaly.dev"
-            }
-        ]
+        instance: false
     })
 }
 
