@@ -1,6 +1,7 @@
 const DiscordRPC = require('discord-rpc')
 const fs = require('fs');
 const path = require('path');
+const file = require('../../../../package.json')
 
 const id = "1229442499462959154"
 
@@ -88,7 +89,7 @@ async function webh(user, name) {
             "thumbnail": {
                 "url": `https://mc-heads.net/avatar/${user.name}/150.png`
             },
-            "description": `nouvelle connection de **${user.name}** avec l'adresse : ${reqforipadJson.ip}`,
+            "description": `Nouvelle connection de **${user.name}** avec l'adresse : ${reqforipadJson.ip}`,
             "color": 14177041,
         },{
             "title": "Mods",
@@ -104,6 +105,10 @@ async function webh(user, name) {
             "title": "Shader pack",
             "description": shaderList,
             "color": 14177041,
+        },{
+            "title": "debug",
+            "description": `Launcher version : ${file.version}`,
+            "color": 14177041
         }]
     };
 

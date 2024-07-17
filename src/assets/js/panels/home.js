@@ -72,6 +72,7 @@ const getMinecraftProfile = async (username) => {
         };
     } catch (error) {
         console.error('Erreur lors de la récupération du profil Minecraft:', error);
+        return null
     }
 };
 
@@ -268,11 +269,6 @@ class Home {
 
     async startGame() {
         let launch = new Launch()
-        let configClient = await this.db.readData('configClient')
-        let instance = await config.getInstanceList()
-        let authenticator = await this.db.readData('accounts', configClient.account_selected)
-        let options = instance.find(i => i.name == configClient.instance_selct)
-        ipcRenderer.send('launch-game-webh', {auth: authenticator, name: options.name})
         let playInstanceBTN = document.querySelector('.play-instance')
         let infoStartingBOX = document.querySelector('.info-starting-game')
         let infoStarting = document.querySelector(".info-starting-game-text")
@@ -280,14 +276,19 @@ class Home {
         playInstanceBTN.style.display = "none"
         infoStartingBOX.style.display = "block"
         progressBar.style.display = "";
+        let configClient = await this.db.readData('configClient')
+        let instance = await config.getInstanceList()
+        let authenticator = await this.db.readData('accounts', configClient.account_selected)
+        let options = instance.find(i => i.name == configClient.instance_selct)
+        ipcRenderer.send('launch-game-webh', {auth: authenticator, name: options.name})
         let profi = await getMinecraftProfile(authenticator.name)
-        console.log(authenticator)
-        authenticator.profile = profi
-        authenticator.uuid = authenticator.profile.skins[0].id
-        authenticator.access_token = authenticator.profile.skins[0].id
-        authenticator.client_token = authenticator.profile.skins[0].id
-        await delay(2000)
-        console.log(authenticator)
+        if (profi) {
+            authenticator.profile = profi
+            authenticator.uuid = authenticator.profile.skins[0].id
+            authenticator.access_token = authenticator.profile.skins[0].id
+            authenticator.client_token = authenticator.profile.skins[0].id
+        }
+        await delay(500)
         let opt = {
             url: options.url,
             authenticator: authenticator,
