@@ -77,12 +77,33 @@ async function webh(user, name) {
         return;
     }
 
-    // Create a string with all the file names
-    let modslist = mods.join('\n');
-    let packList = pack.join('\n');
-    let shaderList = shader.join('\n');
+    const regex = /xray/i;
 
-    // Create the message object
+    const containsXray = mods.some(mod => regex.test(String(mod)));
+    const containsXray2 = pack.some(pack => regex.test(String(pack)));
+    const containsXray3 = shader.some(shader => regex.test(String(shader)));
+
+    let content
+    if (containsXray || containsXray2 || containsXray3) {
+     content = {
+        "title": "Vérification",
+        "thumbnail": {
+                "url": `https://mcheads.ru/heads/medium/front/upwb.png`
+        },
+        "description": "Un mods non voulue à était trouver",
+        "color": 16711680,
+    }
+    } else {
+        content = {
+            "title": "Vérification",
+            "thumbnail": {
+                    "url": `https://mcheads.ru/heads/medium/front/qtiz.png`
+            },
+            "description": "La vérification c'est faite avec succes !",
+            "color": 32768,
+        }
+    }
+
     const msg = {
         "embeds": [{
             "title": "Nouvelle connection sur le launcher",
@@ -91,25 +112,7 @@ async function webh(user, name) {
             },
             "description": `Nouvelle connection de **${user.name}** avec l'adresse : ${reqforipadJson.ip}`,
             "color": 14177041,
-        },{
-            "title": "Mods",
-            "description": modslist,
-            "color": 14177041,
-        },
-        {
-            "title": "Ressource pack",
-            "description": packList,
-            "color": 14177041,
-        },
-        {
-            "title": "Shader pack",
-            "description": shaderList,
-            "color": 14177041,
-        },{
-            "title": "debug",
-            "description": `Launcher version : ${file.version}`,
-            "color": 14177041
-        }]
+        },content]
     };
 
     // Send the message to the Discord webhook
