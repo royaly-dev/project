@@ -126,6 +126,7 @@ class Launcher {
         }
     }
 
+    
     async startLauncher() {
         let accounts = await this.db.readAllData('accounts')
         let configClient = await this.db.readData('configClient')
