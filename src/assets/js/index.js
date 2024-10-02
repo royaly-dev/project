@@ -34,7 +34,6 @@ class Splash {
             { "message": "Ratio + Mouillette", "author": "zycko_" },
             { "message": "Je revient, je vais au toilette", "author": "Kirby360" },
             { "message": "PIERRE QUI ROULE N’´AMASSE PAS MOUSSE", "author": "Shakk" },
-            { "message": "Je vais faire une thomas (v2)", "author": "The land" },
             { "message": "Tkt c'était que l'entrainement", "author": "The land" },
             { "message": "Les gars, je rentre dans un sac carrefour", "author": ".sea._.1" }
         ];
