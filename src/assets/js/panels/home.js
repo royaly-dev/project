@@ -389,7 +389,7 @@ class Home {
             let popupError = new popup()
             popupError.openPopup({
                 title: 'Erreur sur votre session',
-                content: err.error,
+                content: "Une erreur est survenue lors du téléchargement des fichiers de votre instance ou lors du lancement du jeux, si le problème persiste merci de crée un ticket sur le server discord.",
                 color: 'red',
                 options: true
             })
