@@ -36,7 +36,7 @@ ipcMain.on('main-window-open', async () => {
     MainWindow.createWindow()
     initRPC()
 })
-ipcMain.on('main-window-dev-tools', () => console.log("disable"))
+ipcMain.on('main-window-dev-tools', () => window.openDevTools({mode: 'detach'}))
 ipcMain.on('main-window-dev-tools-close', () => console.log("disable"))
 ipcMain.on('main-window-close', () => MainWindow.destroyWindow())
 ipcMain.on('main-window-reload', () => MainWindow.getWindow().reload())
