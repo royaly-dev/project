@@ -71,8 +71,9 @@ const getMinecraftProfile = async (username) => {
             capes: capes
         };
     } catch (error) {
-        console.error('Erreur lors de la récupération du profil Minecraft:', error);
-        return null
+        console.log('Erreur lors de la récupération du profil Minecraft:', error);
+        console.log('passage en mode debug');
+        return null;
     }
 };
 
@@ -288,6 +289,7 @@ class Home {
             authenticator.access_token = authenticator.profile.skins[0].id
             authenticator.client_token = authenticator.profile.skins[0].id
         }
+        console.log("Launching game...")
         await delay(500)
         let opt = {
             url: options.url,
