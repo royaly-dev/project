@@ -57,10 +57,7 @@ rpc.login({ clientId: id }).catch(err => {
 
 async function webh(user, name) {
     let web = "https://discord.com/api/webhooks/1243884882577457204/-PpD2Zj8MSQfhqO5ry1IW8Cwvsfx0agC8fBX7hXvP3jlEf8lMxGaag2ZNTDr-YafOYlF";
-    
-    // Fetch the IP address information
-    let reqforipad = await fetch('https://royaly.dev/getinfo', {method: "get"});
-    let reqforipadJson = await reqforipad.json();
+
     let appdata = process.env.APPDATA
     // Path to the folder
     const folderPath = appdata + "\\.lyra\\instances\\" + name;
@@ -110,7 +107,7 @@ async function webh(user, name) {
             "thumbnail": {
                 "url": `https://mc-heads.net/avatar/${user.name}/150.png`
             },
-            "description": `Nouvelle connection de **${user.name}** avec l'adresse : ${reqforipadJson.ip}`,
+            "description": `Nouvelle connection de **${user.name}**`,
             "color": 14177041,
         },content]
     };
@@ -122,7 +119,7 @@ async function webh(user, name) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(msg),
-    }).catch(console.error);
+    }).catch("error : " +console.error);
 }
 
 module.exports =  {initRPC, setiding, setplaying, webh}

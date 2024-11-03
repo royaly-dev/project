@@ -71,9 +71,9 @@ ipcMain.on('main-window-show', () => {
     setiding()
 })
 
-ipcMain.on('launch-game-webh', (event, data) => {
+ipcMain.on('launch-game-webh', async (event, data) => {
     console.log(data)
-    webh(data.auth, data.name)
+    await webh(data.auth, data.name)
 })
 
 ipcMain.handle('Microsoft-window', async (_, client_id) => {
