@@ -157,3 +157,7 @@ input::-webkit-inner-spin-button {
     z-index: 1;
     pointer-events: all;
 }
+
+#entertheworld {
+    transition: all 0.3s;
+}

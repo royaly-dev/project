@@ -282,6 +282,14 @@ class Home {
     }
 
     async startGame() {
+        document.querySelector('#entertheworld').style.zIndex = '10'
+        document.querySelector('#entertheworld').style.opacity = '0.8'
+        document.querySelector('#audio-portal').play()
+        let intervalplay = setInterval(() => {
+            document.querySelector('#audio-portal').currentTime = 0;
+            document.querySelector('#audio-portal').play()
+        }, 5000);
+        let islaunche = false
         let launch = new Launch()
         let playInstanceBTN = document.querySelector('.play-instance')
         let infoStartingBOX = document.querySelector('.info-starting-game')
@@ -379,13 +387,25 @@ class Home {
 
         launch.on('data', (e) => {
             progressBar.style.display = "none"
-            if (configClient.launcher_config.closeLauncher == 'close-launcher') {
-                ipcRenderer.send("main-window-hide")
-            };
             new logger('Minecraft', '#36b030');
             ipcRenderer.send('main-window-progress-load')
             infoStarting.innerHTML = `Demarrage en cours...`
             console.log(e);
+            if (islaunche === false) {
+                document.querySelector('#audio-endportal').currentTime = 0;
+                document.querySelector('#audio-endportal').play()
+
+                setTimeout(() => {
+                    if (configClient.launcher_config.closeLauncher == 'close-launcher') {
+                        ipcRenderer.send("main-window-hide")
+                    };
+
+                    document.querySelector('#entertheworld').style.zIndex = '-1'
+                    document.querySelector('#entertheworld').style.opacity = '0'
+                }, 3000);
+                islaunche = true
+                clearInterval(intervalplay)
+            }
         })
 
         launch.on('close', code => {
