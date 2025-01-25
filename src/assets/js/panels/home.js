@@ -77,12 +77,23 @@ const getMinecraftProfile = async (username) => {
     }
 };
 
+window.addEventListener('message', (event) => {
+    if (event.origin !== 'file://') {
+        // Ignore messages from unexpected origins
+        return;
+    }
+    const message = event.data;
+    
+    if (message.type == 'news') {
+        new Home().news()
+    }
+});
+
 class Home {
     static id = "home";
     async init(config) {
         this.config = config;
         this.db = new database();
-        this.news()
         this.socialLick()
         this.instancesSelect()
         document.querySelector('.settings-btn').addEventListener('click', e => changePanel('settings'))
@@ -90,8 +101,10 @@ class Home {
     }
 
     async news() {
-        let newsElement = document.querySelector('.news-list');
+        let newsElement = document.querySelector('#news-list');
+        newsElement.innerHTML = ''
         let news = await config.getNews().then(res => res).catch(err => false);
+        console.log(news)
         if (news) {
             if (!news.length) {
                 let blockNews = document.createElement('div');

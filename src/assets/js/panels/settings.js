@@ -28,6 +28,11 @@ class Settings {
                 let activeSettingsBTN = document.querySelector('.active-settings-BTN')
                 let activeContainerSettings = document.querySelector('.active-container-settings')
 
+
+                if (id == 'news') {
+                    postMessage({ type: 'news' }, '*');
+                }
+
                 if (id == 'save') {
                     if (activeSettingsBTN) activeSettingsBTN.classList.toggle('active-settings-BTN');
                     document.querySelector('#account').classList.add('active-settings-BTN');

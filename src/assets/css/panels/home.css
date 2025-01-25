@@ -233,9 +233,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 90%;
     height: 90px;
+    border-radius: 15px 15px 0 0;
+    position: fixed;
+    bottom: 0;
     background: var(--background-transparent);
+}
+
+.svg-logo {
+    position: fixed;
+    top: 15px;
+    width: 35%;
+    transition: opacity 0.3s;
+    transition: transform 0.5s;
+}
+
+.svg-logo-anim {
+    transform: translateY(-130%);
+    opacity: 0;
 }
 
 .player-options {
