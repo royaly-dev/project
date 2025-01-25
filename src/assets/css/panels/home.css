@@ -244,6 +244,7 @@
 .svg-logo {
     position: fixed;
     top: 15px;
+    height: 150px;
     width: 35%;
     transition: opacity 0.3s;
     transition: transform 0.5s;
@@ -298,10 +299,9 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
-    border: solid 3px var(--element-color);
+    border: none;
     border-radius: 15px;
     height: 3.2rem;
-    padding-right: 1.9rem;
     cursor: pointer;
 }
 
@@ -317,13 +317,8 @@
     transition: all 0.3s;
 }
 
-.play-instance:hover button {
-    transition: all 0.3s;
-    scale: 1.05;
-}
-
 .instance-select {
-    display: flex;
+    display: none;
     align-items: center;
     position: absolute;
     right: -3;
@@ -373,8 +368,8 @@
 }
 
 .settings-btn {
-    width: 3rem;
-    height: 3rem;
+    width: 3.2rem;
+    height: 3.2rem;
     font-size: 3rem;
     color: var(--element-color);
     margin: 0 1.5rem;
@@ -383,7 +378,8 @@
 
 .settings-btn:hover {
     transition: all 0.5s;
-    transform: rotate(70deg);
+    transform: rotate(180deg);
+    cursor: pointer;
 }
 
 .instance-popup {
