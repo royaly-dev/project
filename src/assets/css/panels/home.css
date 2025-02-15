@@ -239,6 +239,7 @@
     position: fixed;
     bottom: 0;
     background: var(--background-transparent);
+    transition: all 0.5s;
 }
 
 .svg-logo {
@@ -246,13 +247,15 @@
     top: 15px;
     height: 150px;
     width: 35%;
-    transition: opacity 0.3s;
-    transition: transform 0.5s;
+    transition: all 0.5s;
 }
 
-.svg-logo-anim {
-    transform: translateY(-130%);
-    opacity: 0;
+.sidebar-hidden {
+    transform: translateY(150%);
+}
+
+.svg-logo-hidden {
+    transform: translateY(-150%);
 }
 
 .player-options {

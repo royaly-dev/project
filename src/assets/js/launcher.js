@@ -256,6 +256,16 @@ class Launcher {
 
             popupRefresh.closePopup()
             changePanel("home");
+            setTimeout(() => {
+                const sidebar = document.querySelector('.sidebar');
+            const svg = document.querySelector('.svg-logo');
+            console.log(sidebar, svg);
+            if (sidebar && svg) {
+                sidebar.classList.remove('sidebar-hidden');
+                svg.classList.remove('svg-logo-hidden');
+                console.log('loaded')
+            }
+            }, 200);
             ipcRenderer.send('RODEVerif-all')
         } else {
             popupRefresh.closePopup()

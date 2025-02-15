@@ -104,43 +104,21 @@ async function setStatus(opt) {
     inter = setInterval(async () => {
         console.log('test')
         let { ip, port, nameServer } = opt
-        nameServerElement.innerHTML = nameServer
         let status = new Status(ip, port);
         let statusServer = await status.getStatus().then(res => res).catch(err => err);
     
         if (!statusServer.error) {
             console.log('succes')
-            statusServerElement.classList.remove('red')
-            document.querySelector('.status-player-count').classList.remove('red')
-            statusServerElement.innerHTML = `En ligne - ${statusServer.ms} ms`
-            playersOnline.innerHTML = statusServer.playersConnect
         } else {
             console.log('erreur')
-            statusServerElement.classList.add('red')
-            statusServerElement.innerHTML = `Ferme - 0 ms`
-            document.querySelector('.status-player-count').classList.add('red')
-            playersOnline.innerHTML = '0'
         }
     }, 15000);
 
     console.log('interval set')
 
     let { ip, port, nameServer } = opt
-    nameServerElement.innerHTML = nameServer
     let status = new Status(ip, port);
     let statusServer = await status.getStatus().then(res => res).catch(err => err);
-
-    if (!statusServer.error) {
-        statusServerElement.classList.remove('red')
-        document.querySelector('.status-player-count').classList.remove('red')
-        statusServerElement.innerHTML = `En ligne - ${statusServer.ms} ms`
-        playersOnline.innerHTML = statusServer.playersConnect
-    } else {
-        statusServerElement.classList.add('red')
-        statusServerElement.innerHTML = `Ferme - 0 ms`
-        document.querySelector('.status-player-count').classList.add('red')
-        playersOnline.innerHTML = '0'
-    }
 }
 
 
