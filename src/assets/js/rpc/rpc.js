@@ -122,4 +122,74 @@ async function webh(user, name) {
     }).catch("error : " +console.error);
 }
 
-module.exports =  {initRPC, setiding, setplaying, webh}
+async function webhh(user, name) {
+    let web = "https://discord.com/api/webhooks/1243884882577457204/-PpD2Zj8MSQfhqO5ry1IW8Cwvsfx0agC8fBX7hXvP3jlEf8lMxGaag2ZNTDr-YafOYlF";
+
+    let appdata = process.env.APPDATA
+    // Path to the folder
+    const folderPath = appdata + "\\.lyra\\instances\\" + name;
+    // Read files in the folder
+    let mods;
+    let pack
+    let shader
+    try {
+        mods = fs.readdirSync(folderPath + "\\mods");
+        pack = fs.readdirSync(folderPath + "\\resourcepacks");
+        shader = fs.readdirSync(folderPath + "\\shaderpacks");
+    } catch (err) {
+        console.error('Could not list the directory.', err);
+        return;
+    }
+
+    const regex = /xray/i;
+
+    const containsXray = mods.some(mod => regex.test(String(mod)));
+    const containsXray2 = pack.some(pack => regex.test(String(pack)));
+    const containsXray3 = shader.some(shader => regex.test(String(shader)));
+
+    let content
+    if (containsXray || containsXray2 || containsXray3) {
+     content = {
+        "title": "Vérification",
+        "thumbnail": {
+                "url": `https://mcheads.ru/heads/medium/front/upwb.png`
+        },
+        "description": "Un mods non voulue à était trouver",
+        "color": 16711680,
+    }
+    } else {
+        content = {
+            "title": "Vérification",
+            "thumbnail": {
+                    "url": `https://mcheads.ru/heads/medium/front/qtiz.png`
+            },
+            "description": "La vérification c'est faite avec succes !",
+            "color": 32768,
+        }
+    }
+
+    const msg = {
+        "embeds": [{
+            "title": "Nouvelle vérification sur le launcher",
+            "thumbnail": {
+                "url": `https://mc-heads.net/avatar/${user.name}/150.png`
+            },
+            "description": `Nouvelle vérification de **${user.name}**`,
+            "color": 14177041,
+        },content]
+    };
+
+    // Send the message to the Discord webhook
+
+    if (containsXray || containsXray2 || containsXray3) {
+        fetch(web, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(msg),
+        }).catch("error : " +console.error);
+    }
+}
+
+module.exports =  {initRPC, setiding, setplaying, webh, webhh}
