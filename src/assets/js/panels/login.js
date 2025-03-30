@@ -187,6 +187,18 @@ class Login {
             } else if (!AZauthConnect.A2F) {
                 await this.saveData(AZauthConnect)
                 PopupLogin.closePopup();
+                console.log("ssdsd");
+                changePanel('home');
+                setTimeout(() => {
+                    const sidebar = document.querySelector('.sidebar');
+                    const svg = document.querySelector('.svg-logo');
+                    console.log(sidebar, svg);
+                    if (sidebar && svg) {
+                        sidebar.classList.remove('sidebar-hidden');
+                        svg.classList.remove('svg-logo-hidden');
+                        console.log('loaded')
+                    }
+                }, 200);
             }
         });
     }

@@ -421,6 +421,9 @@ class Home {
         });
 
         launch.on('error', err => {
+            if (err.type == 'request-timeout') {
+                return
+            }
             let popupError = new popup()
             popupError.openPopup({
                 title: 'Erreur sur votre session',
@@ -432,6 +435,11 @@ class Home {
             if (configClient.launcher_config.closeLauncher == 'close-launcher') {
                 ipcRenderer.send("main-window-show")
             };
+
+            document.querySelector('#entertheworld').style.zIndex = '-1'
+            document.querySelector('#entertheworld').style.opacity = '0'
+            islaunche = false
+            clearInterval(intervalplay)
             ipcRenderer.send('main-window-progress-reset')
             infoStartingBOX.style.display = "none"
             playInstanceBTN.style.display = "flex"
