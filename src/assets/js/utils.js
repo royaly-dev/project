@@ -78,8 +78,7 @@ async function accountSelect(data) {
 }
 
 async function headplayer(name) {
-    // https://mc-heads.net/avatar/royaly/150.png
-    document.querySelector(".player-head").style.backgroundImage = `url(https://mc-heads.net/avatar/${name}/150.png)`;
+    document.querySelector(".player-head").style.backgroundImage = `url(https://minotar.net/avatar/${name})`;
 }
 
 let inter = null
