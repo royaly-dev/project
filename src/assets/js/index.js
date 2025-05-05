@@ -29,12 +29,18 @@ class Splash {
 
     async startAnimation() {
         let splashes = [
-            { "message": "baguette !", "author": "royaly" },
-            { "message": "J'ai trouver mon partenaire de crime", "author": "[TC]" },
+            { "message": "Le launcher est launcher lorsqu'il est launcher !", "author": "EdES3345" },
+            { "message": "On peut perdre sa carte 15 fois mais pas 150 15 000 fois", "author": "Ducky duck" },
             { "message": "Ratio + Mouillette", "author": "zycko_" },
             { "message": "PIERRE QUI ROULE N’´AMASSE PAS MOUSSE", "author": "Shakk" },
             { "message": "Tkt c'était que l'entrainement", "author": "The land" },
-            { "message": "Les gars, je rentre dans un sac carrefour", "author": ".sea._.1" }
+            { "message": "$50 gift -Shakkipaa", "author": "[TC]" },
+            { "message": "Are you sure?", "author": "Erafly" },
+            { "message": "Entre pote on partage", "author": "Ducky duck" },
+            { "message": "You need to pray for Lyra", "author": "Ducky duck" },
+            { "message": "I pray for Lyra's supremacy", "author": "Mat" },
+            { "message": "kys", "author": "Ducky duck" },
+
         ];
         let splash = splashes[Math.floor(Math.random() * splashes.length)];
         this.splashMessage.textContent = splash.message;
