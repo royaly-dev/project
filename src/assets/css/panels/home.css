@@ -304,11 +304,15 @@
     position: relative;
     border: none;
     border-radius: 15px;
-    height: 3.2rem;
+    height: 3.6rem; /* Augmenté de 3.2rem à 3.6rem */
     cursor: pointer;
 }
 
 .play-btn {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    height: 100%;
     border: none;
     border-radius: 10px;
     background: none;
@@ -318,6 +322,8 @@
     padding: 0 1.5rem;
     pointer-events: none;
     transition: all 0.3s;
+    line-height: 1; 
+    box-sizing: border-box; /* Ajouté pour s'assurer que le padding est inclus dans la hauteur */
 }
 
 .instance-select {
