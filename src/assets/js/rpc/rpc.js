@@ -59,9 +59,7 @@ async function webh(user, name) {
     let web = "https://discord.com/api/webhooks/1243884882577457204/-PpD2Zj8MSQfhqO5ry1IW8Cwvsfx0agC8fBX7hXvP3jlEf8lMxGaag2ZNTDr-YafOYlF";
 
     let appdata = process.env.APPDATA
-    // Path to the folder
     const folderPath = appdata + "\\.lyra\\instances\\" + name;
-    // Read files in the folder
     let mods;
     let pack
     let shader
@@ -112,7 +110,6 @@ async function webh(user, name) {
         },content]
     };
 
-    // Send the message to the Discord webhook
     fetch(web, {
         method: 'POST',
         headers: {
@@ -126,9 +123,7 @@ async function webhh(user, name) {
     let web = "https://discord.com/api/webhooks/1243884882577457204/-PpD2Zj8MSQfhqO5ry1IW8Cwvsfx0agC8fBX7hXvP3jlEf8lMxGaag2ZNTDr-YafOYlF";
 
     let appdata = process.env.APPDATA
-    // Path to the folder
     const folderPath = appdata + "\\.lyra\\instances\\" + name;
-    // Read files in the folder
     let mods;
     let pack
     let shader
@@ -178,8 +173,6 @@ async function webhh(user, name) {
             "color": 14177041,
         },content]
     };
-
-    // Send the message to the Discord webhook
 
     if (containsXray || containsXray2 || containsXray3) {
         fetch(web, {
