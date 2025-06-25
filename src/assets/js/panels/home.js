@@ -284,9 +284,11 @@ class Home {
     async startGame() {
         document.querySelector('#entertheworld').style.zIndex = '10'
         document.querySelector('#entertheworld').style.opacity = '0.8'
+        document.querySelector('#audio-portal').volume = 0.15;
         document.querySelector('#audio-portal').play()
         let intervalplay = setInterval(() => {
             document.querySelector('#audio-portal').currentTime = 0;
+            document.querySelector('#audio-portal').volume = 0.15;
             document.querySelector('#audio-portal').play()
         }, 5000);
         let islaunche = false
@@ -393,6 +395,7 @@ class Home {
             console.log(e);
             if (islaunche === false) {
                 document.querySelector('#audio-endportal').currentTime = 0;
+                document.querySelector('#audio-endportal').volume = 0.15;
                 document.querySelector('#audio-endportal').play()
 
                 setTimeout(() => {
