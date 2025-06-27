@@ -41,7 +41,8 @@ class Splash {
             { "message": "I pray for Lyra's supremacy", "author": "Mat" },
             { "message": "kys", "author": "Ducky duck" },
             { "message": "1h23", "author": "Royaly" },
-            { "message": "Lyra Décrypte", "author": "[TC]" }
+            { "message": "Lyra Décrypte", "author": "[TC]" },
+            { "message": "Parce que je suis murder", "author": "[TC]" }
 
         ];
         let splash = splashes[Math.floor(Math.random() * splashes.length)];
